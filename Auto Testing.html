@@ -50,12 +50,12 @@
 						for (let index=0;index<printarr.length;index ++) {
 							setTimeout(function(){
 								document.getElementById('div').innerHTML += printarr[index];
-								document.getElementById('titlediv').innerHTML = "printing: %" + (index+1) * (100 / printarr.length);
+								document.getElementById('titlediv').innerHTML = "printing: %" + ((index+1) * (100 / printarr.length)).toFixed(1);
 							},10);
 						}
 						clearInterval(interval);
 					} else if (autotestArrIndex % 50 == 1) {
-						document.getElementById('titlediv').innerHTML = "calculating: %" + autotestArrIndex * (100 / (autotestArr.length));
+						document.getElementById('titlediv').innerHTML = "calculating: %" + (autotestArrIndex * (100 / (autotestArr.length))).toFixed(1);
 					}
 						
 				},0);
@@ -77,8 +77,6 @@
 				generateAllBinaryStrings(n, arr, i + 1);
 			}
 			/************************************************************************************/
-			/************************************************************************************/
-			/************************************************************************************/
 			
 			function test(input,check) {
 				/*
@@ -90,7 +88,7 @@
 				if (!input.length) {
 					alert("Please Enter a Binary String");
 					return;
-				} else if (check) {
+				}  else if (check) {
 					for (let index=0;index<input.length;index ++) {
 						if (input[index] != "0" && input[index] != "1") {
 							alert("Please Enter a Binary String");
@@ -101,7 +99,7 @@
 				
 				str			= input; 	/// str variable starting with original is the operation string
 				mem			= "";		/// mem variable is the stack
-				currentNode = "START";  /// currentNode keeping the current State of the machine
+				currentNode 		= "START";	/// currentNode keeping the current State of the machine
 				
 				
 				/*
