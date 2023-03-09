@@ -45,17 +45,17 @@
 					test(autotestArr[autotestArrIndex],0);
 					autotestArrIndex++;
 					if (autotestArrIndex >= autotestArr.length) {
-						document.getElementById('titlediv').innerHTML = "calculating: 100%";
+						document.getElementById('titlediv').innerHTML = "calculating: %100";
 						document.getElementById('div').innerHTML = '';
 						for (let index=0;index<printarr.length;index ++) {
 							setTimeout(function(){
 								document.getElementById('div').innerHTML += printarr[index];
-								document.title = "printing:" + (index+1) * (100 / printarr.length) + "%";
+								document.getElementById('titlediv').innerHTML = "printing: %" + (index+1) * (100 / printarr.length);
 							},10);
 						}
 						clearInterval(interval);
 					} else if (autotestArrIndex % 50 == 1) {
-						document.getElementById('titlediv').innerHTML = "calculating:" + autotestArrIndex * (100 / (autotestArr.length)) + "%";
+						document.getElementById('titlediv').innerHTML = "calculating: %" + autotestArrIndex * (100 / (autotestArr.length));
 					}
 						
 				},0);
