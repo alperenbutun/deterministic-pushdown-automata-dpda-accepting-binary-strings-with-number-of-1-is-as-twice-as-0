@@ -142,16 +142,12 @@
 				} 
 				else if (str[0] === "0" && mem[0] === "0") {
 					popFromStrAndMem();
-					/*
-					* No Operation (e.g 0,1/E)
-					*/
+					//////////////////
 					currentNode = "START";
 				}
 				else if (str[0] === "0" && mem[0] === "1") {
 					popFromStrAndMem();
-					/*
-					* No Operation (e.g 0,1/E)
-					*/
+					//////////////////
 					currentNode = "RIGHT";
 				}
 				else if (str[0] === "1" && !mem.length) {
@@ -161,16 +157,12 @@
 				}
 				else if (str[0] === "1" && mem[0] === "1") {
 					popFromStrAndMem();
-					/*
-					* No Operation (e.g 1,1/E)
-					*/
+					//////////////////
 					currentNode = "START";
 				}				
 				else if (str[0] === "1" && mem[0] === "0") {
 					popFromStrAndMem();
-					/*
-					* No Operation (e.g 1,0/E)
-					*/
+					//////////////////
 					currentNode = "LEFT";
 				} else {
 					/*
@@ -229,14 +221,12 @@
 				} 
 				else if (str[0] === "0" && mem[0] === "0") {
 					popFromStrAndMem();
-					/////
+					//////////////////
 					currentNode = "NEWNODE";
 				}
 				else if (str[0] === "0" && mem[0] === "1") {
 					popFromStrAndMem();
-					/*
-					* No Operation (e.g 0,1/E)
-					*/
+					//////////////////
 					currentNode = "START";
 				}
 				else if (str[0] === "1" && !mem.length) {
@@ -353,9 +343,7 @@
 				}				
 				else if (str[0] === "1" && mem[0] === "0") {
 					popFromStrAndMem();
-					/*
-					* No Operation (e.g 1,0/E)
-					*/
+					//////////////////
 					currentNode = "START";
 				}
 				else if (!str.length && !mem.length) {
