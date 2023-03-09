@@ -1,7 +1,7 @@
 Deterministic PushDown Automata (DPDA) Accepting Binary Strings With Number of 1s is as Twice as 0
 
 DEMO
-https://rawcdn.githack.com/lpbutun/Deterministic-PushDown-Automata-DPDA-Accepting-Binary-Strings-with-Number-of-1-is-as-Twice-as-0/0e86d04/Auto%20Testing.html
+https://rawcdn.githack.com/lpbutun/Deterministic-PushDown-Automata-DPDA-Accepting-Binary-Strings-with-Number-of-1-is-as-Twice-as-0/5fd17bb/Auto%20Testing.html
 
 PDA Machine
 https://raw.githubusercontent.com/lpbutun/Deterministic-PushDown-Automata-DPDA-Accepting-Binary-Strings-with-Number-of-1-is-as-Twice-as-0/main/DPDA%20Machine%20Design.png
