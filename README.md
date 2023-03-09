@@ -4,7 +4,7 @@ DEMO
 https://rawcdn.githack.com/lpbutun/Deterministic-PushDown-Automata-DPDA-Accepting-Binary-Strings-with-Number-of-1-is-as-Twice-as-0/35cb000/Auto%20Testing.html
 
 PDA Machine
-https://raw.githubusercontent.com/lpbutun/Deterministic-PushDown-Automata-DPDA-Accepting-Binary-Strings-with-Number-of-1-is-as-Twice-as-0/main/DPDA%20Machine.png
+https://raw.githubusercontent.com/lpbutun/Deterministic-PushDown-Automata-DPDA-Accepting-Binary-Strings-with-Number-of-1-is-as-Twice-as-0/main/DPDA%20Machine%20Design.png
 
 I searched the Web and couldn't find the correct and deterministic solution to this problem. I think the problem is very fundamental in theoretical computing.
 I'm sending the solution to Github along with "Visual PDA Machine Design" and "Simulation(working program) of the Design"
