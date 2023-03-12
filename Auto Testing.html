@@ -59,10 +59,16 @@
 			function printTextOutput(is_auto) {
 				document.getElementById('div').innerHTML = '';
 				for (let index=0;index<printarr.length;index ++) {
-					document.getElementById('div').innerHTML += printarr[index];
-					if (is_auto)
-						document.getElementById('titlediv').innerHTML = "printing: %" + ((index+1) * (100 / printarr.length)).toFixed(1);
+					doTimeout(index);
 				}
+			}
+			
+			function doTimeout() {
+				setTimeout(function() {
+					document.getElementById('div').innerHTML += printarr[index];
+						if (is_auto)
+							document.getElementById('titlediv').innerHTML = "printing: %" + ((index+1) * (100 / printarr.length)).toFixed(1);
+				}, 0);
 			}
 			
 			function printTheArray(arr, n)
