@@ -32,6 +32,7 @@
 					return;
 				}
 				
+				autotestArr = [];
 				let n = lngth;
 				let arr = new Array(n);
 				arr.fill(0);
@@ -42,11 +43,11 @@
 				document.getElementById('div').innerHTML = '';
 				printarr = [];
 				let interval = setInterval(function() {
-					test(autotestArr[autotestArrIndex],0);
+					test(autotestArr[autotestArrIndex],1);
 					autotestArrIndex++;
 					if (autotestArrIndex >= autotestArr.length) {
 						document.getElementById('titlediv').innerHTML = "calculating: %100";
-						printTextOutput();
+						printTextOutput(1);
 						clearInterval(interval);
 					} else if (autotestArrIndex % 50 == 1) {
 						document.getElementById('titlediv').innerHTML = "calculating: %" + (autotestArrIndex * (100 / (autotestArr.length))).toFixed(1);
@@ -58,11 +59,9 @@
 			function printTextOutput(is_auto) {
 				document.getElementById('div').innerHTML = '';
 				for (let index=0;index<printarr.length;index ++) {
-					setTimeout(function(){
-						document.getElementById('div').innerHTML += printarr[index];
-						if (is_auto)
-							document.getElementById('titlediv').innerHTML = "printing: %" + ((index+1) * (100 / printarr.length)).toFixed(1);
-					},10);
+					document.getElementById('div').innerHTML += printarr[index];
+					if (is_auto)
+						document.getElementById('titlediv').innerHTML = "printing: %" + ((index+1) * (100 / printarr.length)).toFixed(1);
 				}
 			}
 			
@@ -112,7 +111,7 @@
 				*/
 				while(1) {
 					if (currentNode == "Completed") {
-						if (is_auto) {
+						if (!is_auto) {
 							printTextOutput(is_auto);
 						}
 						break;
