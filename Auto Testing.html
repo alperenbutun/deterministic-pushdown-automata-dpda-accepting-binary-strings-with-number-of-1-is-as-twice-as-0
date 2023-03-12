@@ -59,11 +59,12 @@
 			function printTextOutput(is_auto) {
 				document.getElementById('div').innerHTML = '';
 				for (let index=0;index<printarr.length;index ++) {
-					doTimeout(index);
+					doTimeout(index,is_auto);
 				}
 			}
 			
-			function doTimeout(index) {
+			function doTimeout(index,is_auto) {
+				document.getElementById('titlediv').innerHTML = "";
 				setTimeout(function() {
 					document.getElementById('div').innerHTML += printarr[index];
 						if (is_auto)
