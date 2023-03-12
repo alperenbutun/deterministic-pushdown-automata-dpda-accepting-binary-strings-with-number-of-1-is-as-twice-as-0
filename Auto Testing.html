@@ -69,7 +69,7 @@
 				setTimeout(function() {
 					document.getElementById('div').innerHTML += printarr[index];
 						if (is_auto)
-							document.getElementById('titlediv').innerHTML = "printing first 250, last 250: %" + ((index+1) * (100 / printarr.length)).toFixed(1);
+							document.getElementById('titlediv').innerHTML = "calculated " + printarr.length + ". printing first 250, last 250: %" + ((index+1) * (100 / printarr.length)).toFixed(1);
 				}, 0);
 			}
 			
@@ -194,9 +194,9 @@
 						writetxt = keepstr + " don't need any character";
 						/* check programmatically*/
 						if ((keepstr.split("1").length - 1) == (keepstr.split("0").length-1)*2) {
-							writetxt += " checked<br>";
+							writetxt += ". checked<br>";
 						} else {
-							writetxt += " nope<br>";
+							writetxt += ". nope<br>";
 							alert(keepstr);
 						}
 						printarr[printarr.length] = writetxt;
@@ -209,9 +209,9 @@
 						writetxt = keepstr + " needing " + mem;
 						/* check programmatically*/
 						if (((keepstr+mem).split("1").length - 1) == ((keepstr+mem).split("0").length-1)*2 && (keepstr.split("1").length - 1) != (keepstr.split("0").length-1)*2 ) {
-							writetxt += " checked<br>";
+							writetxt += ". checked<br>";
 						} else {
-							writetxt += " nope<br>";
+							writetxt += ". nope<br>";
 							alert(keepstr);
 						}
 						printarr[printarr.length] = writetxt;
