@@ -59,7 +59,7 @@
 			function printTextOutput(is_auto) {
 				document.getElementById('div').innerHTML = '';
 				for (let index=0;index<printarr.length;index ++) {
-					if (index < 1000 || index > printarr.length - 1000)
+					if (index < 250 || index > printarr.length - 250 - (1))
 						doTimeout(index,is_auto);
 				}
 			}
@@ -69,7 +69,7 @@
 				setTimeout(function() {
 					document.getElementById('div').innerHTML += printarr[index];
 						if (is_auto)
-							document.getElementById('titlediv').innerHTML = "printing first 1000, last 1000: %" + ((index+1) * (100 / printarr.length)).toFixed(1);
+							document.getElementById('titlediv').innerHTML = "printing first 250, last 250: %" + ((index+1) * (100 / printarr.length)).toFixed(1);
 				}, 0);
 			}
 			
@@ -88,6 +88,10 @@
 				arr[i] = 1;
 				generateAllBinaryStrings(n, arr, i + 1);
 			}
+			/************************************************************************************/
+			/************************************************************************************/
+			/************************************************************************************/
+			/************************************************************************************/
 			/************************************************************************************/
 			
 			function test(input,is_auto) {
