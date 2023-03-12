@@ -55,12 +55,13 @@
 				},0);
 			}
 			
-			function printTextOutput() {
+			function printTextOutput(is_auto) {
 				document.getElementById('div').innerHTML = '';
 				for (let index=0;index<printarr.length;index ++) {
 					setTimeout(function(){
 						document.getElementById('div').innerHTML += printarr[index];
-						document.getElementById('titlediv').innerHTML = "printing: %" + ((index+1) * (100 / printarr.length)).toFixed(1);
+						if (is_auto)
+							document.getElementById('titlediv').innerHTML = "printing: %" + ((index+1) * (100 / printarr.length)).toFixed(1);
 					},10);
 				}
 			}
@@ -82,7 +83,7 @@
 			}
 			/************************************************************************************/
 			
-			function test(input,check) {
+			function test(input,is_auto) {
 				/*
 				* Manual single Test function. This function is also called by Auto Test function for each test
 				*/
@@ -111,8 +112,8 @@
 				*/
 				while(1) {
 					if (currentNode == "Completed") {
-						if (check) {
-							printTextOutput();
+						if (is_auto) {
+							printTextOutput(is_auto);
 						}
 						break;
 					} else if (currentNode === "START") {
