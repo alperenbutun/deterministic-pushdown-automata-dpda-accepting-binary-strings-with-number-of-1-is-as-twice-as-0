@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+	<body>
+		<div style="position:relative;float:left;width:100%;text-align:center;margin-top:9px;">
+			<input onclick="autotest();" type="button" value="Auto Test" style="height:38px;cursor:pointer;"/>
+			<input id="txt" placeholder="Please Enter a Binary String or Auto Test" type="text" style="width:250px;height:32px;text-align:center;"/><input onclick="printarr=[];test(document.getElementById('txt').value, 0);" type="button" value="Test" style="height:38px;cursor:pointer;"/>
+			<div id="titlediv" style="position:relative;width:500px;font-weight:bold;text-align:center;margin:0 auto;top:10px;"></div>
+			<div id="div" style="position:relative;width:500px;height:350px;text-align:center;margin:0 auto;top:10px;"></div>
+		</div>
+		<script>
+			
+			var keepstr;		/// Original string
+			
+			var str;		/// Operation string
+			var mem;		/// Stack
+			var currentNode;	/// Variable that keeping the current Node
+			
+			var printarr 	= [];   /// Keeping texts that will be written as output
+			
+			var autotestArr = [];   /// Keeping binary string combinations of 0 and 1s according to the length
+			
+			/*************************************************************************************************
+			 * AUTOTEST function is generating all combination of 1 and 0 of the length taken from the user
+			 * Max string length is taken from the user
+			 ************************************************************************************************/
+			function autotest() {
+				let lngth = prompt("Please Enter String Length (eg 6)");
+				if (lngth == null || !lngth.length || parseInt(lngth) <= 0 || isNaN(parseInt(lngth))) {
+					alert("Please Enter a Valid Number");
+					return;
+				}
+				
+				autotestArr = [];
+				let n = lngth;
+				let arr = new Array(n);
+				arr.fill(0);
+				generateAllBinaryStrings(n, arr, 0);
+				
+				let autotestArrIndex = 0;
+				
+				document.getElementById('div').innerHTML = '';
+				printarr = [];
+				let interval = setInterval(function() {
+					test(autotestArr[autotestArrIndex],1);
+					autotestArrIndex++;
+					if (autotestArrIndex >= autotestArr.length) {
+						document.getElementById('titlediv').innerHTML = "calculating: %100";
+						printTextOutput(1);
+						clearInterval(interval);
+					} else if (autotestArrIndex % 50 == 1) {
+						document.getElementById('titlediv').innerHTML = "calculating: %" + (autotestArrIndex * (100 / (autotestArr.length))).toFixed(1);
+					}
+						
+				},0);
+			}
+			
+			function printTextOutput(is_auto) {
+				document.getElementById('div').innerHTML = '';
+				for (let index=0;index<printarr.length;index ++) {
+					document.getElementById('div').innerHTML += printarr[index];
+					if (is_auto)
+						document.getElementById('titlediv').innerHTML = "printing: %" + ((index+1) * (100 / printarr.length)).toFixed(1);
+				}
+			}
+			
+			function printTheArray(arr, n)
+			{
+				autotestArr.push(arr.join(""));
+			}
+			
+			function generateAllBinaryStrings(n, arr, i) {
+				if (i == n) {
+					printTheArray(arr, n);
+					return;
+				}
+				arr[i] = 0;
+				generateAllBinaryStrings(n, arr, i + 1);
+				arr[i] = 1;
+				generateAllBinaryStrings(n, arr, i + 1);
+			}
+			/************************************************************************************/
+			
+			function test(input,is_auto) {
+				/*
+				* Manual single Test function. This function is also called by Auto Test function for each test
+				*/
+				
+				keepstr = input; /// keepstr variable is the original string
+				
+				if (!input.length) {
+					alert("Please Enter a Binary String");
+					return;
+				}  else if (!is_auto) {
+					for (let index=0;index<input.length;index ++) {
+						if (input[index] != "0" && input[index] != "1") {
+							alert("Please Enter a Binary String");
+							return;
+						}
+					}
+				}
+				
+				str			= input; 	/// str variable starting with original is the operation string
+				mem			= "";		/// mem variable is the stack
+				currentNode 		= "START";	/// currentNode keeping the current State of the machine
+				
+				
+				/*
+				* Main Operation Loop. Calling state functions according to the current state (currentNode)
+				*/
+				while(1) {
+					if (currentNode == "Completed") {
+						if (!is_auto) {
+							printTextOutput(is_auto);
+						}
+						break;
+					} else if (currentNode === "START") {
+						STARTNODE();
+					} else if (currentNode === "LEFT") {
+						LEFTNODE();
+					} else if (currentNode === "RIGHT") {
+						RIGHTNODE();
+					} else if (currentNode === "NEWNODE") {
+						NEWNODE();
+					}
+				}
+				
+			}
+			
+			function STARTNODE() {
+				/*
+				* Implementing the Start State of the Machine
+				* For each condition, check character of string and memory stack and remove 
+				* Append data to memory
+				* Go to Another State (following the machine design)
+				*/
+				if (     str[0] === "0" && !mem.length) {
+					popFromStrAndMem();
+					mem = "11" + mem;
+					currentNode = "START";
+				} 
+				else if (str[0] === "0" && mem[0] === "0") {
+					popFromStrAndMem();
+					//////////////////
+					currentNode = "START";
+				}
+				else if (str[0] === "0" && mem[0] === "1") {
+					popFromStrAndMem();
+					//////////////////
+					currentNode = "RIGHT";
+				}
+				else if (str[0] === "1" && !mem.length) {
+					popFromStrAndMem();
+					mem = "10" + mem;
+					currentNode = "START";
+				}
+				else if (str[0] === "1" && mem[0] === "1") {
+					popFromStrAndMem();
+					//////////////////
+					currentNode = "START";
+				}				
+				else if (str[0] === "1" && mem[0] === "0") {
+					popFromStrAndMem();
+					//////////////////
+					currentNode = "LEFT";
+				} else {
+					/*
+					* This condition is the ending condition of the machine. (String is empty)
+					* If memory is also empty, machine ended successfully. (number of 1 is twice as 0)
+					* If memory is  not empty, machine ended but (number of 1 is not twice as 0) 
+					* 		The final content of the memory represents the needed characters for machine to be completed
+					*		Concatenation of the original string with the memory content in this condition, will give a string (number of 1 is twice as 0)
+					*/
+					currentNode = "Completed";
+					let writetxt;
+					if (!str.length && !mem.length) {
+						/*
+						* Machine Completed and number of 1 is twice as 0
+						* 
+						*/
+						writetxt = keepstr + " don't need any character";
+						/* check programmatically*/
+						if ((keepstr.split("1").length - 1) == (keepstr.split("0").length-1)*2) {
+							writetxt += " checked<br>";
+						} else {
+							writetxt += " nope<br>";
+							alert(keepstr);
+						}
+						printarr[printarr.length] = writetxt;
+					} else if (!str.length) {
+						/*
+						* Machine Completed and number of 1s is not twice as 0
+						* mem variable is keeping the needed character array
+						* 
+						*/
+						writetxt = keepstr + " needing " + mem;
+						/* check programmatically*/
+						if (((keepstr+mem).split("1").length - 1) == ((keepstr+mem).split("0").length-1)*2 && (keepstr.split("1").length - 1) != (keepstr.split("0").length-1)*2 ) {
+							writetxt += " checked<br>";
+						} else {
+							writetxt += " nope<br>";
+							alert(keepstr);
+						}
+						printarr[printarr.length] = writetxt;
+					}
+				}
+			}
+			
+			function LEFTNODE() {
+				/*
+				* Implementing the Left State of the Machine
+				* For each condition, check character or string and memory stack and remove 
+				* Append data to memory
+				* Go to Start State (following the machine design)
+				*/
+				if (     str[0] === "0" && !mem.length) {
+					popFromStrAndMem();
+					mem = "10" + mem;
+					currentNode = "START";
+				} 
+				else if (str[0] === "0" && mem[0] === "0") {
+					popFromStrAndMem();
+					//////////////////
+					currentNode = "NEWNODE";
+				}
+				else if (str[0] === "0" && mem[0] === "1") {
+					popFromStrAndMem();
+					//////////////////
+					currentNode = "START";
+				}
+				else if (str[0] === "1" && !mem.length) {
+					popFromStrAndMem();
+					mem = "00" + mem;
+					currentNode = "START";
+				}
+				else if (str[0] === "1" && mem[0] === "1") {
+					popFromStrAndMem();
+					mem = "100" + mem;
+					currentNode = "START";
+				}				
+				else if (str[0] === "1" && mem[0] === "0") {
+					popFromStrAndMem();
+					mem = "000" + mem;
+					currentNode = "START";
+				}
+				else if (!str.length && !mem.length) {
+					popFromStrAndMem();
+					mem = "100" + mem;
+					currentNode = "START";
+				}
+				else if (!str.length && mem[0] === "1") {
+					popFromStrAndMem();
+					mem = "0" + mem;
+					currentNode = "START";
+				}
+				else if (!str.length && mem[0] === "0") {
+					popFromStrAndMem();
+					mem = "1000" + mem;
+					currentNode = "START";
+				}
+			}
+
+			function NEWNODE() {
+				if (     str[0] === "0" && !mem.length) {
+					popFromStrAndMem();
+					mem = "10" + mem; 
+					currentNode = "START";
+				} 
+				else if (str[0] === "0" && mem[0] === "0") {
+					popFromStrAndMem();
+					//////////////////
+					currentNode = "NEWNODE";
+				}
+				else if (str[0] === "0" && mem[0] === "1") {
+					popFromStrAndMem();
+					//////////////////
+					currentNode = "START";
+				}
+				else if (str[0] === "1" && !mem.length) {
+					popFromStrAndMem();
+					mem = "00" + mem;
+					currentNode = "START";
+				}
+				else if (str[0] === "1" && mem[0] === "1") {
+					popFromStrAndMem();
+					//////////////////
+					currentNode = "NEWNODE";
+				}				
+				else if (str[0] === "1" && mem[0] === "0") {
+					popFromStrAndMem();
+					mem = "000" + mem;
+					currentNode = "START";
+				}
+				else if (!str.length && !mem.length) {
+					popFromStrAndMem();
+					mem = "100" + mem;
+					currentNode = "START";
+				}
+				else if (!str.length && mem[0] === "1") {
+					popFromStrAndMem();
+					mem = "0" + mem;
+					currentNode = "START";
+				}
+				else if (!str.length && mem[0] === "0") {
+					popFromStrAndMem();
+					mem = "1000" + mem;
+					currentNode = "START";
+				}
+			}
+			
+			function RIGHTNODE() {
+				/*
+				* Implementing the Right State of the Machine
+				* For each condition, check character or string and memory stack and remove 
+				* Append data to memory
+				* Go to Start State (following the machine design)
+				*/
+				if (     str[0] === "0" && !mem.length) {
+					popFromStrAndMem();
+					mem = "11111" + mem;
+					currentNode = "START";
+				} 
+				else if (str[0] === "0" && mem[0] === "0") {
+					popFromStrAndMem();
+					mem = "111" + mem;
+					currentNode = "START";
+				}
+				else if (str[0] === "0" && mem[0] === "1") {
+					popFromStrAndMem();
+					mem = "111111" + mem;
+					currentNode = "START";
+				}
+				else if (str[0] === "1" && !mem.length) {
+					popFromStrAndMem();
+					mem = "11" + mem;
+					currentNode = "START";
+				}
+				else if (str[0] === "1" && mem[0] === "1") {
+					popFromStrAndMem();
+					mem = "111" + mem;
+					currentNode = "START";
+				}				
+				else if (str[0] === "1" && mem[0] === "0") {
+					popFromStrAndMem();
+					//////////////////
+					currentNode = "START";
+				}
+				else if (!str.length && !mem.length) {
+					popFromStrAndMem();
+					mem = "111" + mem;
+					currentNode = "START";
+				}
+				else if (!str.length && mem[0] === "1") {
+					popFromStrAndMem();
+					mem = "1111" + mem;
+					currentNode = "START";
+				}
+				else if (!str.length && mem[0] === "0") {
+					popFromStrAndMem();
+					mem = "1" + mem;
+					currentNode = "START";
+				}
+			}
+			 
+			function popFromStrAndMem() {
+				/*
+				* After each check (e.g 1,0/E) 
+				* one element from string and memory stack is removed
+				*/
+				str = str.substring(1);
+				mem = mem.substring(1);
+			}
+		</script>
+	</body>
+</html>
