@@ -6,8 +6,7 @@ https://rawcdn.githack.com/lpbutun/Deterministic-PushDown-Automata-DPDA-Acceptin
 I searched the Web and couldn't find the correct and deterministic solution to this problem. The problem is very fundamental in theoretical computer science.
 I'm sending the deterministic solution to Github along with "Visual DPDA Machine Design" and "Simulation (working program) of the Design"
 
-There are two files in total.
-* DPDA Machine Design.php is showing the visual design
+* Deterministic PDA Design.png is showing the visual design
 * Auto Testing.html is the machine's simulation which the DPDA design is implemented. 
   This file is also testing file. Any string or all combination of strings can be tested. 
   To run this file, please click the DEMO link above. 
