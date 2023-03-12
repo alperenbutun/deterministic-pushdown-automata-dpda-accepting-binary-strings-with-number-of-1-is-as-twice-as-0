@@ -47,7 +47,7 @@
 					autotestArrIndex++;
 					if (autotestArrIndex >= autotestArr.length) {
 						document.getElementById('titlediv').innerHTML = "calculating: %100";
-						printTextOutput(1);
+						printTextOutput(1); 
 						clearInterval(interval);
 					} else if (autotestArrIndex % 50 == 1) {
 						document.getElementById('titlediv').innerHTML = "calculating: %" + (autotestArrIndex * (100 / (autotestArr.length))).toFixed(1);
