@@ -59,7 +59,8 @@
 			function printTextOutput(is_auto) {
 				document.getElementById('div').innerHTML = '';
 				for (let index=0;index<printarr.length;index ++) {
-					doTimeout(index,is_auto);
+					if (index < 1000 || index > printarr.length - 1000)
+						doTimeout(index,is_auto);
 				}
 			}
 			
@@ -68,7 +69,7 @@
 				setTimeout(function() {
 					document.getElementById('div').innerHTML += printarr[index];
 						if (is_auto)
-							document.getElementById('titlediv').innerHTML = "printing: %" + ((index+1) * (100 / printarr.length)).toFixed(1);
+							document.getElementById('titlediv').innerHTML = "printing first 1000, last 1000: %" + ((index+1) * (100 / printarr.length)).toFixed(1);
 				}, 0);
 			}
 			
