@@ -5,7 +5,7 @@
 	<body>
 		<div style="position:relative;float:left;width:100%;text-align:center;margin-top:9px;">
 			<input onclick="autotest();" type="button" value="Auto Test" style="height:38px;cursor:pointer;"/>
-			<input id="txt" placeholder="Please Enter a Binary String or Auto Test" type="text" style="width:250px;height:32px;text-align:center;"/><input onclick="printarr=[];test(document.getElementById('txt').value,1);" type="button" value="Test" style="height:38px;cursor:pointer;"/>
+			<input id="txt" placeholder="Please Enter a Binary String or Auto Test" type="text" style="width:250px;height:32px;text-align:center;"/><input onclick="printarr=[];test(document.getElementById('txt').value, 0);" type="button" value="Test" style="height:38px;cursor:pointer;"/>
 			<div id="titlediv" style="position:relative;width:500px;font-weight:bold;text-align:center;margin:0 auto;top:10px;"></div>
 			<div id="div" style="position:relative;width:500px;height:350px;text-align:center;margin:0 auto;top:10px;"></div>
 		</div>
@@ -93,7 +93,7 @@
 				if (!input.length) {
 					alert("Please Enter a Binary String");
 					return;
-				}  else if (check) {
+				}  else if (!is_auto) {
 					for (let index=0;index<input.length;index ++) {
 						if (input[index] != "0" && input[index] != "1") {
 							alert("Please Enter a Binary String");
