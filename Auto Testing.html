@@ -42,24 +42,25 @@
 				
 				document.getElementById('div').innerHTML = '';
 				printarr = [];
-				while (1) {
+				let interval = setInterval (function() {
 					test(autotestArr[autotestArrIndex],1);
 					autotestArrIndex++;
 					if (autotestArrIndex >= autotestArr.length) {
 						document.getElementById('titlediv').innerHTML = "calculating ("+printarr.length+"/"+autotestArr.length+"): %100";
 						printTextOutput(1); 
-						break;
+						clearInterval(interval);
 					} else if (autotestArrIndex % 50 == 1) {
 						document.getElementById('titlediv').innerHTML = "calculating ("+printarr.length+"/"+autotestArr.length+"): %" + (autotestArrIndex * (100 / (autotestArr.length))).toFixed(1);
 					}
 						
-				}
+				},0);
 			}
 			
 			function printTextOutput(is_auto) {
 				document.getElementById('div').innerHTML = '';
 				for (let index=0;index<printarr.length;index ++) {
-					doTimeout(index,is_auto);
+					if (index < 500 || index > printarr.length - 500 - (1))
+						doTimeout(index,is_auto);
 				}
 			}
 			
@@ -68,7 +69,7 @@
 				setTimeout(function() {
 					document.getElementById('div').innerHTML += printarr[index];
 						if (is_auto)
-							document.getElementById('titlediv').innerHTML = "calculated " + printarr.length + ".: %" + ((index+1) * (100 / printarr.length)).toFixed(1);
+							document.getElementById('titlediv').innerHTML = "calculated " + printarr.length + ". printing first500, last500: %" + ((index+1) * (100 / printarr.length)).toFixed(1);
 				}, 0);
 			}
 			
