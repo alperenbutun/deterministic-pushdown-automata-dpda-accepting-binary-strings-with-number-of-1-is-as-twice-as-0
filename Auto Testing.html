@@ -11,11 +11,11 @@
 		</div>
 		<script>
 			
-			var keepstr;		/// Original string
+			var keepstr;			/// Original string
 			
-			var str;		/// Operation string
-			var mem;		/// Stack
-			var currentNode;	/// Variable that keeping the current Node
+			var str;				/// Operation string
+			var mem;				/// Stack
+			var currentNode;		/// Variable that keeping the current Node
 			
 			var printarr 	= [];   /// Keeping texts that will be written as output
 			
@@ -25,19 +25,26 @@
 			/*************************************************************************************************
 			 * AUTOTEST function is generating all combination of 1 and 0 of the length taken from the user
 			 ************************************************************************************************/
-			function testAndGenerate(index) {
-			    test(combination, 1);
-			    let realindex = combination.length - (1) - index;
-			    if (combination[realindex] == "0") {
-				combination = combination.split("");
-				combination[realindex] = "1";
-				combination = combination.join("");
-			    } else if (combination[realindex] == "1" && realindex > 0) {
-				combination = combination.split("");
-				combination[realindex] = "0";
-				combination = combination.join("");
-				testAndGenerate(index+1);
-			    }
+			function testAndGenerate(index,donttest,lngth) {
+				if (!combination.length) {
+					for (let index=0; index < lngth; index ++)
+						combination += "0";
+				} else {
+			    		let realindex = combination.length - (1) - index;
+					if (combination[realindex] == "0") {
+						combination = combination.split("");
+						combination[realindex] = "1";
+						combination = combination.join("");
+					} else if (combination[realindex] == "1" && realindex > 0) {
+						combination = combination.split("");
+						combination[realindex] = "0";
+						combination = combination.join("");
+						testAndGenerate(index+1,1);
+					}
+				}
+				if (!donttest) {
+					test(combination, 1);
+				}
 			}
 			
 			function autotest() {				
@@ -47,16 +54,12 @@
 					return;
 				}
 				
-				for (let index=0; index < lngth; index ++) {
-				    combination += "0";
-				}
-
 				let autotestArrIndex = 0;
 				
 				document.getElementById('div').innerHTML = '';
 				printarr = [];
 				let interval = setInterval (function() {
-					testAndGenerate(0);
+					testAndGenerate(0, 0, lngth);
 					autotestArrIndex++;
 					if (combination.split("0").length - 1 == 0) {
 						document.getElementById('titlediv').innerHTML = "calculating ("+printarr.length+"/"+Math.pow(2,lngth)+"): %100";
