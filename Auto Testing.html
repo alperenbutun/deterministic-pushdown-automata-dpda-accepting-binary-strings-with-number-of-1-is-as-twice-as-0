@@ -23,27 +23,40 @@
 			
 			/*************************************************************************************************
 			 * AUTOTEST function is generating all combination of 1 and 0 of the length taken from the user
-			 * Max string length is taken from the user
 			 ************************************************************************************************/
-			function autotest() {
+			function testAndGenerate(index) {
+			    test(combination, 1);
+			    let realindex = combination.length - (1) - index;
+			    if (combination[realindex] == "0") {
+				combination = combination.split("");
+				combination[realindex] = "1";
+				combination = combination.join("");
+			    } else if (combination[realindex] == "1" && realindex > 0) {
+				combination = combination.split("");
+				combination[realindex] = "0";
+				combination = combination.join("");
+				testAndGenerate(index+1);
+			    }
+			}
+			
+			function autotest() {				
 				let lngth = prompt("Please Enter String Length (eg 6)");
 				if (lngth == null || !lngth.length || parseInt(lngth) <= 0 || isNaN(parseInt(lngth))) {
 					alert("Please Enter a Valid Number");
 					return;
 				}
 				
-				autotestArr = [];
-				let n = lngth;
-				let arr = new Array(n);
-				arr.fill(0);
-				generateAllBinaryStrings(n, arr, 0);
-				
+				let combination = "";
+				for (let index=0; index < lngth; index ++) {
+				    combination += "0";
+				}
+
 				let autotestArrIndex = 0;
 				
 				document.getElementById('div').innerHTML = '';
 				printarr = [];
 				let interval = setInterval (function() {
-					test(autotestArr[autotestArrIndex],1);
+					testAndGenerate(0);
 					autotestArrIndex++;
 					if (autotestArrIndex >= autotestArr.length) {
 						document.getElementById('titlediv').innerHTML = "calculating ("+printarr.length+"/"+autotestArr.length+"): %100";
@@ -73,21 +86,6 @@
 				}, 0);
 			}
 			
-			function printTheArray(arr, n)
-			{
-				autotestArr.push(arr.join(""));
-			}
-			
-			function generateAllBinaryStrings(n, arr, i) {
-				if (i == n) {
-					printTheArray(arr, n);
-					return;
-				}
-				arr[i] = 0;
-				generateAllBinaryStrings(n, arr, i + 1);
-				arr[i] = 1;
-				generateAllBinaryStrings(n, arr, i + 1);
-			}
 			/************************************************************************************/
 			/************************************************************************************/
 			/************************************************************************************/
