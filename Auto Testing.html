@@ -75,7 +75,7 @@
 						printTextOutput(1); 
 						clearInterval(interval);
 					} else if (autotestArrIndex % 50 == 1) {
-						document.getElementById('titlediv').innerHTML = "calculating ("+printarr.length+"/"+Math.pow(2,lngth)+"): %" + (autotestArrIndex * (100 / (Math.pow(2,lngth)))).toFixed(3);
+						document.getElementById('titlediv').innerHTML = "calculating ("+printarr.length+"/"+Math.pow(2,lngth)+"): %" + (autotestArrIndex * (100 / (Math.pow(2,lngth)))).toFixed(1);
 					}
 						
 				},0);
