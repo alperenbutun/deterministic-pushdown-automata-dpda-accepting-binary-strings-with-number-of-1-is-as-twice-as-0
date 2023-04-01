@@ -18,19 +18,25 @@
 			var currentNode;		/// Variable that keeping the current Node
 			
 			var printarr 	= [];   /// Keeping texts that will be written as output
+
+			var combination = ""; 	/// Keeping the current binary string that is a combinations of 0 and 1s according to the length
 			
-			var autotestArr = [];   /// Keeping binary string combinations of 0 and 1s according to the length
-			
-			var combination = "";
+			/*************************************************************************************************/
+			/*************************************************************************************************/
+			/*************************************************************************************************/
+			*************/************************************************************************************/
+			/*************************************************************************************************/
 			/*************************************************************************************************
 			 * AUTOTEST function is generating all combination of 1 and 0 of the length taken from the user
 			 ************************************************************************************************/
+			
 			function testAndGenerate(index,donttest,lngth) {
 				if (!combination.length) {
-					for (let index=0; index < lngth; index ++)
+					for (let index=0; index < lngth; index ++) {
 						combination += "0";
+					}
 				} else {
-			    		let realindex = combination.length - (1) - index;
+			    let realindex = combination.length - (1) - index;
 					if (combination[realindex] == "0") {
 						combination = combination.split("");
 						combination[realindex] = "1";
@@ -55,11 +61,14 @@
 				}
 				
 				let autotestArrIndex = 0;
-				
+					printarr 		 = [];
+					combination		 = "";
+					
 				document.getElementById('div').innerHTML = '';
-				printarr = [];
+				
 				let interval = setInterval (function() {
 					testAndGenerate(0, 0, lngth);
+					console.log(combination);
 					autotestArrIndex++;
 					if (combination.split("0").length - 1 == 0) {
 						document.getElementById('titlediv').innerHTML = "calculating ("+printarr.length+"/"+Math.pow(2,lngth)+"): %100";
@@ -89,6 +98,11 @@
 				}, 0);
 			}
 			
+			/************************************************************************************/
+			/************************************************************************************/
+			/************************************************************************************/
+			/************************************************************************************/
+			/************************************************************************************/
 			/************************************************************************************/
 			/************************************************************************************/
 			/************************************************************************************/
