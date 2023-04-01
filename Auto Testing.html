@@ -11,11 +11,11 @@
 		</div>
 		<script>
 			
-			var keepstr;			/// Original string
+			var keepstr;		/// Original string
 			
-			var str;				/// Operation string
-			var mem;				/// Stack
-			var currentNode;		/// Variable that keeping the current Node
+			var str;		/// Operation string
+			var mem;		/// Stack
+			var currentNode;	/// Variable that keeping the current Node
 			
 			var printarr 	= [];   /// Keeping texts that will be written as output
 
@@ -24,7 +24,7 @@
 			/*************************************************************************************************/
 			/*************************************************************************************************/
 			/*************************************************************************************************/
-			*************/************************************************************************************/
+			**************************************************************************************************/
 			/*************************************************************************************************/
 			/*************************************************************************************************
 			 * AUTOTEST function is generating all combination of 1 and 0 of the length taken from the user
@@ -36,7 +36,7 @@
 						combination += "0";
 					}
 				} else {
-			    let realindex = combination.length - (1) - index;
+			   		let realindex = combination.length - (1) - index;
 					if (combination[realindex] == "0") {
 						combination = combination.split("");
 						combination[realindex] = "1";
