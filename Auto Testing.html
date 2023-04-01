@@ -58,12 +58,12 @@
 				let interval = setInterval (function() {
 					testAndGenerate(0);
 					autotestArrIndex++;
-					if (autotestArrIndex >= autotestArr.length) {
-						document.getElementById('titlediv').innerHTML = "calculating ("+printarr.length+"/"+autotestArr.length+"): %100";
+					if (combination.split("0").length - 1 == 0) {
+						document.getElementById('titlediv').innerHTML = "calculating ("+printarr.length+"/"+Math.pow(2,lngth)+"): %100";
 						printTextOutput(1); 
 						clearInterval(interval);
 					} else if (autotestArrIndex % 50 == 1) {
-						document.getElementById('titlediv').innerHTML = "calculating ("+printarr.length+"/"+autotestArr.length+"): %" + (autotestArrIndex * (100 / (autotestArr.length))).toFixed(1);
+						document.getElementById('titlediv').innerHTML = "calculating ("+printarr.length+"/"+Math.pow(2,lngth)+"): %" + (autotestArrIndex * (100 / (Math.pow(2,lngth)))).toFixed(3);
 					}
 						
 				},0);
