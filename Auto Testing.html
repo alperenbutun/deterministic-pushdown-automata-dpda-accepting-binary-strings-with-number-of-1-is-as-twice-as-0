@@ -19,7 +19,8 @@
 			
 			var printarr 	= [];   /// Keeping texts that will be written as output
 
-			var combination = ""; 	/// Keeping the current binary string that is a combinations of 0 and 1s according to the length
+			var combination = ""; 	/// Keeping the current binary string that is a combination of 0 and 1s according to the length
+						/// taken from the user
 			
 			/*************************************************************************************************/
 			/*************************************************************************************************/
@@ -27,10 +28,10 @@
 			/*************************************************************************************************/
 			/*************************************************************************************************/
 			/*************************************************************************************************
-			 * AUTOTEST function is generating all combination of 1 and 0 of the length taken from the user
+			 * AUTOTEST function is managing the "Auto Testing" feature.
 			 ************************************************************************************************/
 			function autotest() {				
-				let lngth = prompt("Please Enter String Length (eg 6)");
+				let length = prompt("Please Enter String Length (eg 6)");
 				if (lngth == null || !lngth.length || parseInt(lngth) <= 0 || isNaN(parseInt(lngth))) {
 					alert("Please Enter a Valid Number");
 					return;
@@ -137,12 +138,7 @@
 				* Main Operation Loop. Calling state functions according to the current state (currentNode)
 				*/
 				while(1) {
-					if (currentNode == "Completed") {
-						if (!is_auto) {
-							printTextOutput(is_auto);
-						}
-						break;
-					} else if (currentNode === "START") {
+					if (currentNode === "START") {
 						STARTNODE();
 					} else if (currentNode === "LEFT") {
 						LEFTNODE();
@@ -150,87 +146,67 @@
 						RIGHTNODE();
 					} else if (currentNode === "NEWNODE") {
 						NEWNODE();
+					} else if (currentNode == "Completed") {
+						if (!is_auto) {
+							printTextOutput(is_auto);
+						}
+						break;
 					}
 				}
 				
 			}
 			
-			function STARTNODE() {
+			function RIGHTNODE() {
 				/*
-				* Implementing the Start State of the Machine
-				* For each condition, check character of string and memory stack and remove 
+				* Implementing the Right State of the Machine
+				* For each condition, check character or string and memory stack and remove 
 				* Append data to memory
-				* Go to Another State (following the machine design)
+				* Go to Start State (following the machine design)
 				*/
 				if (     str[0] === "0" && !mem.length) {
 					popFromStrAndMem();
-					mem = "11" + mem;
+					mem = "11111" + mem;
 					currentNode = "START";
 				} 
 				else if (str[0] === "0" && mem[0] === "0") {
 					popFromStrAndMem();
-					//////////////////
+					mem = "111" + mem;
 					currentNode = "START";
 				}
 				else if (str[0] === "0" && mem[0] === "1") {
 					popFromStrAndMem();
-					//////////////////
-					currentNode = "RIGHT";
+					mem = "111111" + mem;
+					currentNode = "START";
 				}
 				else if (str[0] === "1" && !mem.length) {
 					popFromStrAndMem();
-					mem = "10" + mem;
+					mem = "11" + mem;
 					currentNode = "START";
 				}
 				else if (str[0] === "1" && mem[0] === "1") {
 					popFromStrAndMem();
-					//////////////////
+					mem = "111" + mem;
 					currentNode = "START";
 				}				
 				else if (str[0] === "1" && mem[0] === "0") {
 					popFromStrAndMem();
 					//////////////////
-					currentNode = "LEFT";
-				} else {
-					/*
-					* This condition is the ending condition of the machine. (String is empty)
-					* If memory is also empty, machine ended successfully. (number of 1 is twice as 0)
-					* If memory is  not empty, machine ended but (number of 1 is not twice as 0) 
-					* 		The final content of the memory represents the needed characters for machine to be completed
-					*		Concatenation of the original string with the memory content in this condition, will give a string (number of 1 is twice as 0)
-					*/
-					currentNode = "Completed";
-					let writetxt;
-					if (!str.length && !mem.length) {
-						/*
-						* Machine Completed and number of 1 is twice as 0
-						* 
-						*/
-						writetxt = keepstr + " don't need any character";
-						/* check programmatically*/
-						if ((keepstr.split("1").length - 1) == (keepstr.split("0").length-1)*2) {
-							writetxt += ". ✔<br>";
-						} else {
-							writetxt += ". ✖<br>";
-							alert(keepstr);
-						}
-						printarr[printarr.length] = writetxt;
-					} else if (!str.length) {
-						/*
-						* Machine Completed and number of 1s is not twice as 0
-						* mem variable is keeping the needed character array
-						* 
-						*/
-						writetxt = keepstr + " needing " + mem;
-						/* check programmatically*/
-						if (((keepstr+mem).split("1").length - 1) == ((keepstr+mem).split("0").length-1)*2 && (keepstr.split("1").length - 1) != (keepstr.split("0").length-1)*2 ) {
-							writetxt += ". ✔<br>";
-						} else {
-							writetxt += ". ✖<br>";
-							alert(keepstr);
-						}
-						printarr[printarr.length] = writetxt;
-					}
+					currentNode = "START";
+				}
+				else if (!str.length && !mem.length) {
+					popFromStrAndMem();
+					mem = "111" + mem;
+					currentNode = "START";
+				}
+				else if (!str.length && mem[0] === "1") {
+					popFromStrAndMem();
+					mem = "1111" + mem;
+					currentNode = "START";
+				}
+				else if (!str.length && mem[0] === "0") {
+					popFromStrAndMem();
+					mem = "1" + mem;
+					currentNode = "START";
 				}
 			}
 			
@@ -336,57 +312,82 @@
 				}
 			}
 			
-			function RIGHTNODE() {
+			function STARTNODE() {
 				/*
-				* Implementing the Right State of the Machine
-				* For each condition, check character or string and memory stack and remove 
-				* Append data to memory
-				* Go to Start State (following the machine design)
+				* Implementing the Start State of the Machine
+				* For each condition, check first character of string and memory and remove 
+				* Append (or not) new data to memory
+				* Go to the Corresponding State (According to the design)
 				*/
 				if (     str[0] === "0" && !mem.length) {
 					popFromStrAndMem();
-					mem = "11111" + mem;
+					mem = "11" + mem;
 					currentNode = "START";
 				} 
 				else if (str[0] === "0" && mem[0] === "0") {
 					popFromStrAndMem();
-					mem = "111" + mem;
+					//////////////////
 					currentNode = "START";
 				}
 				else if (str[0] === "0" && mem[0] === "1") {
 					popFromStrAndMem();
-					mem = "111111" + mem;
-					currentNode = "START";
+					//////////////////
+					currentNode = "RIGHT";
 				}
 				else if (str[0] === "1" && !mem.length) {
 					popFromStrAndMem();
-					mem = "11" + mem;
+					mem = "10" + mem;
 					currentNode = "START";
 				}
 				else if (str[0] === "1" && mem[0] === "1") {
 					popFromStrAndMem();
-					mem = "111" + mem;
+					//////////////////
 					currentNode = "START";
 				}				
 				else if (str[0] === "1" && mem[0] === "0") {
 					popFromStrAndMem();
 					//////////////////
-					currentNode = "START";
-				}
-				else if (!str.length && !mem.length) {
-					popFromStrAndMem();
-					mem = "111" + mem;
-					currentNode = "START";
-				}
-				else if (!str.length && mem[0] === "1") {
-					popFromStrAndMem();
-					mem = "1111" + mem;
-					currentNode = "START";
-				}
-				else if (!str.length && mem[0] === "0") {
-					popFromStrAndMem();
-					mem = "1" + mem;
-					currentNode = "START";
+					currentNode = "LEFT";
+				} else {
+					/*
+					* This condition is the ending condition of the machine. (String is empty)
+					* If memory is also empty, machine ended successfully. (number of 1 is twice as 0)
+					* If memory is  not empty, machine ended but (number of 1 is not twice as 0) 
+					* 		The final content of the memory represents the needed characters for machine to be completed
+					*		Concatenation of the original string with the memory content in this condition, will give a string (number of 1 is twice as 0)
+					*/
+					currentNode = "Completed";
+					let writetxt;
+					if (!str.length && !mem.length) {
+						/*
+						* Machine Completed and number of 1 is twice as 0
+						* 
+						*/
+						writetxt = keepstr + " don't need any character";
+						/* check programmatically*/
+						if ((keepstr.split("1").length - 1) == (keepstr.split("0").length-1)*2) {
+							writetxt += ". ✔<br>";
+						} else {
+							writetxt += ". ✖<br>";
+							alert(keepstr);
+						}
+						printarr[printarr.length] = writetxt;
+					} else if (!str.length) {
+						/*
+						* Machine Completed and number of 1s is not twice as 0
+						* mem variable is keeping the needed character array
+						* 
+						*/
+						writetxt = keepstr + " needing " + mem;
+						/* check programmatically*/
+						if (((keepstr+mem).split("1").length - 1) == ((keepstr+mem).split("0").length-1)*2 && (keepstr.split("1").length - 1) != (keepstr.split("0").length-1)*2 ) {
+							writetxt += ". ✔<br>";
+						} else {
+							writetxt += ". ✖<br>";
+							alert(keepstr);
+						}
+						printarr[printarr.length] = writetxt;
+					}
 				}
 			}
 			 
