@@ -209,9 +209,9 @@
 						writetxt = keepstr + " don't need any character";
 						/* check programmatically*/
 						if ((keepstr.split("1").length - 1) == (keepstr.split("0").length-1)*2) {
-							writetxt += ". checked<br>";
+							writetxt += ". ✔<br>";
 						} else {
-							writetxt += ". nope<br>";
+							writetxt += ". ✖<br>";
 							alert(keepstr);
 						}
 						printarr[printarr.length] = writetxt;
@@ -224,9 +224,9 @@
 						writetxt = keepstr + " needing " + mem;
 						/* check programmatically*/
 						if (((keepstr+mem).split("1").length - 1) == ((keepstr+mem).split("0").length-1)*2 && (keepstr.split("1").length - 1) != (keepstr.split("0").length-1)*2 ) {
-							writetxt += ". checked<br>";
+							writetxt += ". ✔<br>";
 						} else {
-							writetxt += ". nope<br>";
+							writetxt += ". ✖<br>";
 							alert(keepstr);
 						}
 						printarr[printarr.length] = writetxt;
