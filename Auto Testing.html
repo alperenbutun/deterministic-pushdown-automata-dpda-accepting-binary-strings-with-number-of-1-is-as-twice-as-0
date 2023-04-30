@@ -159,9 +159,9 @@
 			function RIGHTNODE() {
 				/*
 				* Implementing the Right State of the Machine
-				* For each condition, check character or string and memory stack and remove 
-				* Append data to memory
-				* Go to Start State (following the machine design)
+				* For each condition, check character of string and stack, and remove 
+				* Prepend data to stack according to design
+				* Go to the Start State (following the machine design)
 				*/
 				if (     str[0] === "0" && !mem.length) {
 					popFromStrAndMem();
@@ -213,9 +213,9 @@
 			function LEFTNODE() {
 				/*
 				* Implementing the Left State of the Machine
-				* For each condition, check character or string and memory stack and remove 
-				* Append data to memory
-				* Go to Start State (following the machine design)
+				* For each condition, check character of string and stack, and remove 
+				* Prepend data to stack according to design
+				* Go to the Start State (following the machine design)
 				*/
 				if (     str[0] === "0" && !mem.length) {
 					popFromStrAndMem();
@@ -315,9 +315,9 @@
 			function STARTNODE() {
 				/*
 				* Implementing the Start State of the Machine
-				* For each condition, check first character of string and memory and remove 
-				* Append (or not) new data to memory
-				* Go to the Corresponding State (According to the design)
+				* For each condition, check character of string and stack, and remove 
+				* Prepend data to stack according to design
+				* Go to the Start State (following the machine design)
 				*/
 				if (     str[0] === "0" && !mem.length) {
 					popFromStrAndMem();
