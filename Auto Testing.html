@@ -265,6 +265,16 @@
 			}
 
 			function NEWNODE() {
+				/*
+				* Implementing the "Top Left" State of the Machine
+				* For each condition, check character of string and stack, and remove 
+				* Prepend data to stack according to design
+				* Go to the Start State (following the machine design)
+				*
+				* Note: This node is added to desing 	in 2023. 
+				*	It didn't exist in the solution in 2017
+				*
+				*/
 				if (     str[0] === "0" && !mem.length) {
 					popFromStrAndMem();
 					mem = "10" + mem; 
@@ -317,7 +327,7 @@
 				* Implementing the Start State of the Machine
 				* For each condition, check character of string and stack, and remove 
 				* Prepend data to stack according to design
-				* Go to the Start State (following the machine design)
+				* Go to State (following the machine design)
 				*/
 				if (     str[0] === "0" && !mem.length) {
 					popFromStrAndMem();
