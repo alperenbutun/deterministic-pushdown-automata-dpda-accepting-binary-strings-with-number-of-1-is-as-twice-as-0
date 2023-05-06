@@ -7,7 +7,7 @@ After searching the Web, I couldn't find the correct and deterministic solution 
 
 This DPDA problem is very fundamental in theoretical computer science.
 
-I'm sending the solution to Github along with "Visual DPDA Machine Design" and "Simulation of the Design"
+I'm sending the deterministic solution to Github along with "Visual DPDA Machine Design" and "Simulation of the Design"
 
 * DPDA Machine Design is the visual representation of the dpda design
 * Auto Testing.html is the simulation of the machine which the dpda design is implemented. 
