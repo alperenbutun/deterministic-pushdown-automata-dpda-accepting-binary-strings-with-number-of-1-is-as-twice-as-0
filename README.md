@@ -1,4 +1,4 @@
-Deterministic PushDown Automata (DPDA) Accepting Binary Strings With Number of 1s is as Twice as 0
+Deterministic Pushdown Automaton (DPDA) Accepting Binary Strings With Number of 1s is as Twice as 0
 
 Test:
 https://rawcdn.githack.com/lpbutun/Deterministic-PushDown-Automata-DPDA-Accepting-Binary-Strings-with-Number-of-1-is-as-Twice-as-0/754076f/Auto%20Testing.html
