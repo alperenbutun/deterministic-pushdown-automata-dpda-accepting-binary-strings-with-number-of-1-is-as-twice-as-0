@@ -52,7 +52,7 @@
 						document.getElementById('titlediv').innerHTML = "calculating ("+printarr.length+"/"+Math.pow(2,lngth)+"): %100";
 						printTextOutput(1); 
 						clearInterval(interval);
-					} else if (autotestArrIndex % 50 == 0) {
+					} else if (autotestArrIndex % 1 == 0) {
 						document.getElementById('titlediv').innerHTML = "calculating ("+printarr.length+"/"+Math.pow(2,lngth)+"): %" + (autotestArrIndex * (100 / (Math.pow(2,lngth)))).toFixed(1);
 					}
 						
