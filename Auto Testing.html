@@ -49,11 +49,11 @@
 					testAndGenerate(0, 0, lngth);
 					autotestArrIndex++;
 					if (combination.split("0").length - 1 == 0) {
-						document.getElementById('titlediv').innerHTML = "calculating ("+printarr.length+"/"+Math.pow(2,lngth)+"): %100";
+						document.getElementById('titlediv').innerHTML = "computing ("+printarr.length+"/"+Math.pow(2,lngth)+"): %100";
 						printTextOutput(1); 
 						clearInterval(interval);
 					} else if (autotestArrIndex % 1 == 0) {
-						document.getElementById('titlediv').innerHTML = "calculating ("+printarr.length+"/"+Math.pow(2,lngth)+"): %" + (autotestArrIndex * (100 / (Math.pow(2,lngth)))).toFixed(1);
+						document.getElementById('titlediv').innerHTML = "computing ("+printarr.length+"/"+Math.pow(2,lngth)+"): %" + (autotestArrIndex * (100 / (Math.pow(2,lngth)))).toFixed(1);
 					}
 						
 				},0);
