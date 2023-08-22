@@ -22,15 +22,7 @@
 			var combination = ""; 	/// Keeping the current binary string that is a combination of 0 and 1s according to the length
 						/// taken from the user
 
-			function popFromStrAndMem() {
-				/*
-				* After each check (e.g 1,0/E) 
-				* one element from string and memory stack is removed
-				*/
-				str = str.substring(1);
-				mem = mem.substring(1);
-			}
-
+		
 			function RIGHTNODE() {
 				/*
 				* Implementing the Right State of the Machine
@@ -303,6 +295,15 @@
 					}
 						
 				},0);
+			}
+
+			function popFromStrAndMem() {
+				/*
+				* After each check (e.g 1,0/E) 
+				* one element from string and memory stack is removed
+				*/
+				str = str.substring(1);
+				mem = mem.substring(1);
 			}
 			
 			function testAndGenerate(index,donttest,lngth) {
