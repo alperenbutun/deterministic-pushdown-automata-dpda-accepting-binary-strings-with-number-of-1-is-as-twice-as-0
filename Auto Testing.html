@@ -21,141 +21,16 @@
 
 			var combination = ""; 	/// Keeping the current binary string that is a combination of 0 and 1s according to the length
 						/// taken from the user
-			
-			/*************************************************************************************************/
-			/*************************************************************************************************/
-			/*************************************************************************************************/
-			/*************************************************************************************************/
-			/*************************************************************************************************/
-			/*************************************************************************************************
-			 * AUTOTEST function is managing the "Auto Testing" feature.
-			 ************************************************************************************************/
-			function autotest() {				
-				let lngth = prompt("Please Enter String Length (eg 6)");
-				if (lngth == null || !lngth.length || parseInt(lngth) <= 0 || isNaN(parseInt(lngth))) {
-					alert("Please Enter a Valid Number");
-					return;
-				}
-				
-				let autotestArrIndex = 0;
-				
-				printarr 	     = [];
-				
-				combination          = "";
-					
-				document.getElementById('div').innerHTML = '';
-				
-				let interval = setInterval (function() {
-					testAndGenerate(0, 0, lngth);
-					autotestArrIndex++;
-					if (combination.split("0").length - 1 == 0) {
-						document.getElementById('titlediv').innerHTML = "computing ("+printarr.length+"/"+Math.pow(2,lngth)+"): %100";
-						printTextOutput(1); 
-						clearInterval(interval);
-					} else if (autotestArrIndex % 1 == 0) {
-						document.getElementById('titlediv').innerHTML = "computing ("+printarr.length+"/"+Math.pow(2,lngth)+"): %" + (autotestArrIndex * (100 / (Math.pow(2,lngth)))).toFixed(1);
-					}
-						
-				},0);
-			}
-			
-			function testAndGenerate(index,donttest,lngth) {
-				if (!combination.length) {
-					for (let index=0; index < lngth; index ++) {
-						combination += "0";
-					}
-				} else {
-			   		let realindex = combination.length - (1) - index;
-					if (combination[realindex] == "0") {
-						combination = combination.split("");
-						combination[realindex] = "1";
-						combination = combination.join("");
-					} else if (combination[realindex] == "1" && realindex > 0) {
-						combination = combination.split("");
-						combination[realindex] = "0";
-						combination = combination.join("");
-						testAndGenerate(index+1,1);
-					}
-				}
-				if (!donttest) {
-					test(combination, 1);
-				}
+
+			function popFromStrAndMem() {
+				/*
+				* After each check (e.g 1,0/E) 
+				* one element from string and memory stack is removed
+				*/
+				str = str.substring(1);
+				mem = mem.substring(1);
 			}
 
-			function printTextOutput(is_auto) {
-				document.getElementById('div').innerHTML = '';
-				for (let index=0;index<printarr.length;index ++) {
-					///if (index < 500 || index > printarr.length - 500 - (1))
-						doTimeout(index,is_auto);
-				}
-			}
-			
-			function doTimeout(index,is_auto) {
-				document.getElementById('titlediv').innerHTML = "";
-				setTimeout(function() {
-					document.getElementById('div').innerHTML += printarr[index];
-						if (is_auto)
-							document.getElementById('titlediv').innerHTML = "computed " + printarr.length + ". printing: %" + ((index+1) * (100 / printarr.length)).toFixed(1);
-				}, 0);
-			}
-			
-			/************************************************************************************/
-			/************************************************************************************/
-			/************************************************************************************/
-			/************************************************************************************/
-			/************************************************************************************/
-			/************************************************************************************/
-			/************************************************************************************/
-			/************************************************************************************/
-			/************************************************************************************/
-			/************************************************************************************/
-			
-			function test(input,is_auto) {
-				/*
-				* Manual single Test function. This function is also called by Auto Test function for each test
-				*/
-				
-				keepstr = input; /// keepstr variable is the original string
-				
-				if (!input.length) {
-					alert("Please Enter a Binary String");
-					return;
-				}  else if (!is_auto) {
-					for (let index=0;index<input.length;index ++) {
-						if (input[index] != "0" && input[index] != "1") {
-							alert("Please Enter a Binary String");
-							return;
-						}
-					}
-				}
-				
-				str			= input; 	/// str variable starting with original, is the operation string
-				mem			= "";		/// mem variable is the stack
-				currentNode 		= "START";	/// currentNode keeping the current State of the machine
-				
-				
-				/*
-				* Main Operation Loop. Calling state functions according to the current state (currentNode)
-				*/
-				while(1) {
-					if (currentNode === "START") {
-						STARTNODE();
-					} else if (currentNode === "LEFT") {
-						LEFTNODE();
-					} else if (currentNode === "RIGHT") {
-						RIGHTNODE();
-					} else if (currentNode === "NEWNODE") {
-						NEWNODE();
-					} else if (currentNode == "Completed") {
-						if (!is_auto) {
-							printTextOutput(is_auto);
-						}
-						break;
-					}
-				}
-				
-			}
-			
 			function RIGHTNODE() {
 				/*
 				* Implementing the Right State of the Machine
@@ -400,15 +275,122 @@
 					}
 				}
 			}
-			 
-			function popFromStrAndMem() {
-				/*
-				* After each check (e.g 1,0/E) 
-				* one element from string and memory stack is removed
-				*/
-				str = str.substring(1);
-				mem = mem.substring(1);
+			
+			function autotest() {				
+				let lngth = prompt("Please Enter String Length (eg 6)");
+				if (lngth == null || !lngth.length || parseInt(lngth) <= 0 || isNaN(parseInt(lngth))) {
+					alert("Please Enter a Valid Number");
+					return;
+				}
+				
+				let autotestArrIndex = 0;
+				
+				printarr 	     = [];
+				
+				combination          = "";
+					
+				document.getElementById('div').innerHTML = '';
+				
+				let interval = setInterval (function() {
+					testAndGenerate(0, 0, lngth);
+					autotestArrIndex++;
+					if (combination.split("0").length - 1 == 0) {
+						document.getElementById('titlediv').innerHTML = "computing ("+printarr.length+"/"+Math.pow(2,lngth)+"): %100";
+						printTextOutput(1); 
+						clearInterval(interval);
+					} else if (autotestArrIndex % 1 == 0) {
+						document.getElementById('titlediv').innerHTML = "computing ("+printarr.length+"/"+Math.pow(2,lngth)+"): %" + (autotestArrIndex * (100 / (Math.pow(2,lngth)))).toFixed(1);
+					}
+						
+				},0);
 			}
+			
+			function testAndGenerate(index,donttest,lngth) {
+				if (!combination.length) {
+					for (let index=0; index < lngth; index ++) {
+						combination += "0";
+					}
+				} else {
+			   		let realindex = combination.length - (1) - index;
+					if (combination[realindex] == "0") {
+						combination = combination.split("");
+						combination[realindex] = "1";
+						combination = combination.join("");
+					} else if (combination[realindex] == "1" && realindex > 0) {
+						combination = combination.split("");
+						combination[realindex] = "0";
+						combination = combination.join("");
+						testAndGenerate(index+1,1);
+					}
+				}
+				if (!donttest) {
+					test(combination, 1);
+				}
+			}
+
+			function printTextOutput(is_auto) {
+				document.getElementById('div').innerHTML = '';
+				for (let index=0;index<printarr.length;index ++) {
+					///if (index < 500 || index > printarr.length - 500 - (1))
+						doTimeout(index,is_auto);
+				}
+			}
+			
+			function doTimeout(index,is_auto) {
+				document.getElementById('titlediv').innerHTML = "";
+				setTimeout(function() {
+					document.getElementById('div').innerHTML += printarr[index];
+						if (is_auto)
+							document.getElementById('titlediv').innerHTML = "computed " + printarr.length + ". printing: %" + ((index+1) * (100 / printarr.length)).toFixed(1);
+				}, 0);
+			}
+				
+			function test(input,is_auto) {
+				/*
+				* Manual single Test function. This function is also called by Auto Test function for each test
+				*/
+				
+				keepstr = input; /// keepstr variable is the original string
+				
+				if (!input.length) {
+					alert("Please Enter a Binary String");
+					return;
+				}  else if (!is_auto) {
+					for (let index=0;index<input.length;index ++) {
+						if (input[index] != "0" && input[index] != "1") {
+							alert("Please Enter a Binary String");
+							return;
+						}
+					}
+				}
+				
+				str			= input; 	/// str variable starting with original, is the operation string
+				mem			= "";		/// mem variable is the stack
+				currentNode 		= "START";	/// currentNode keeping the current State of the machine
+				
+				
+				/*
+				* Main Operation Loop. Calling state functions according to the current state (currentNode)
+				*/
+				while(1) {
+					if (currentNode === "START") {
+						STARTNODE();
+					} else if (currentNode === "LEFT") {
+						LEFTNODE();
+					} else if (currentNode === "RIGHT") {
+						RIGHTNODE();
+					} else if (currentNode === "NEWNODE") {
+						NEWNODE();
+					} else if (currentNode == "Completed") {
+						if (!is_auto) {
+							printTextOutput(is_auto);
+						}
+						break;
+					}
+				}
+				
+			}
+			
 		</script>
 	</body>
 </html>
