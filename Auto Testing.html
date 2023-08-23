@@ -22,7 +22,50 @@
 			var combination = ""; 	/// Keeping the current binary string that is a combination of 0 and 1s according to the length
 						/// taken from the user
 
-		
+			function test(input,is_auto) {
+				/*
+				* Function that taking a binary string as input. 
+    				* Testing the string by calling states (nodes) according to the dpda design
+				*/
+				
+				keepstr = input; /// keepstr variable is the original string
+				
+				if (!input.length) {
+					alert("Please Enter a Binary String");
+					return;
+				}  else if (!is_auto) {
+					for (let index=0;index<input.length;index ++) {
+						if (input[index] != "0" && input[index] != "1") {
+							alert("Please Enter a Binary String");
+							return;
+						}
+					}
+				}
+				
+				str			= input; 	/// str variable starting with original, is the operation string
+				mem			= "";		/// mem variable is the stack
+				currentNode 		= "START";	/// currentNode keeping the current State of the machine
+				
+				
+				/*
+				* Main Operation Loop. Calling state functions according to the current state (currentNode)
+				*/
+				while(1) {
+					if (currentNode === "START") {
+						STARTNODE();
+					} else if (currentNode === "LEFT") {
+						LEFTNODE();
+					} else if (currentNode === "RIGHT") {
+						RIGHTNODE();
+					} else if (currentNode === "NEWNODE") {
+						NEWNODE();
+					} else if (currentNode == "Completed") {
+						break;
+					}
+				}
+				
+			}
+			
 			function RIGHTNODE() {
 				/*
 				* Implementing the Right State of the Machine
@@ -30,7 +73,7 @@
 				* Prepend data to stack according to design
 				* Go to the Start State (following the machine design)
 				*/
-				if (     str[0] === "0" && !mem.length) {
+				if (str[0] === "0" && !mem.length) {
 					popFromStrAndMem();
 					mem = "11111" + mem;
 					currentNode = "START";
@@ -82,9 +125,9 @@
 				* Implementing the Left State of the Machine
 				* For each condition, check character of string and stack, and remove 
 				* Prepend data to stack according to design
-				* Go to the Start State (following the machine design)
+				* Go to A State (following the machine design)
 				*/
-				if (     str[0] === "0" && !mem.length) {
+				if (str[0] === "0" && !mem.length) {
 					popFromStrAndMem();
 					mem = "10" + mem;
 					currentNode = "START";
@@ -136,13 +179,13 @@
 				* Implementing the "Top Left" State of the Machine
 				* For each condition, check character of string and stack, and remove 
 				* Prepend data to stack according to design
-				* Go to the Start State (following the machine design)
+				* Go to A State (following the machine design)
 				*
-				* Note: This node is added to desing 	in 2023. 
+				* Note: This node is added to design	in 2023. 
 				*	It didn't exist in the solution in 2017
 				*
 				*/
-				if (     str[0] === "0" && !mem.length) {
+				if (str[0] === "0" && !mem.length) {
 					popFromStrAndMem();
 					mem = "10" + mem; 
 					currentNode = "START";
@@ -194,9 +237,9 @@
 				* Implementing the Start State of the Machine
 				* For each condition, check character of string and stack, and remove 
 				* Prepend data to stack according to design
-				* Go to State (following the machine design)
+				* Go to A State (following the machine design)
 				*/
-				if (     str[0] === "0" && !mem.length) {
+				if (str[0] === "0" && !mem.length) {
 					popFromStrAndMem();
 					mem = "11" + mem;
 					currentNode = "START";
@@ -344,52 +387,6 @@
 						if (is_auto)
 							document.getElementById('titlediv').innerHTML = "computed " + printarr.length + ". printing: %" + ((index+1) * (100 / printarr.length)).toFixed(1);
 				}, 0);
-			}
-				
-			function test(input,is_auto) {
-				/*
-				* Manual single Test function. This function is also called by Auto Test function for each test
-				*/
-				
-				keepstr = input; /// keepstr variable is the original string
-				
-				if (!input.length) {
-					alert("Please Enter a Binary String");
-					return;
-				}  else if (!is_auto) {
-					for (let index=0;index<input.length;index ++) {
-						if (input[index] != "0" && input[index] != "1") {
-							alert("Please Enter a Binary String");
-							return;
-						}
-					}
-				}
-				
-				str			= input; 	/// str variable starting with original, is the operation string
-				mem			= "";		/// mem variable is the stack
-				currentNode 		= "START";	/// currentNode keeping the current State of the machine
-				
-				
-				/*
-				* Main Operation Loop. Calling state functions according to the current state (currentNode)
-				*/
-				while(1) {
-					if (currentNode === "START") {
-						STARTNODE();
-					} else if (currentNode === "LEFT") {
-						LEFTNODE();
-					} else if (currentNode === "RIGHT") {
-						RIGHTNODE();
-					} else if (currentNode === "NEWNODE") {
-						NEWNODE();
-					} else if (currentNode == "Completed") {
-						if (!is_auto) {
-							printTextOutput(is_auto);
-						}
-						break;
-					}
-				}
-				
 			}
 			
 		</script>
