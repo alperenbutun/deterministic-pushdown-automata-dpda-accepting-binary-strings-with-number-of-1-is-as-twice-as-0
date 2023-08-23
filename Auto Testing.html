@@ -25,7 +25,7 @@
 			function test(input,is_auto) {
 				/*
 				* Function that taking a binary string as input. 
-    				* Testing the string by calling states (nodes) according to the dpda design
+    				* Testing the string by calling states (nodes) according to the design
 				*/
 				
 				keepstr = input; /// keepstr variable is the original string
@@ -291,7 +291,7 @@
 							writetxt += ". ✖<br>";
 							alert(keepstr);
 						}
-						printarr[printarr.length] = writetxt;
+						console.log(writetxt);
 					} else if (!str.length) {
 						/*
 						* Machine Completed and number of 1s is not twice as 0
@@ -306,7 +306,7 @@
 							writetxt += ". ✖<br>";
 							alert(keepstr);
 						}
-						printarr[printarr.length] = writetxt;
+						console.log(writetxt);
 					}
 				}
 			}
@@ -340,7 +340,6 @@
 					autotestArrIndex++;
 					if (combination.split("0").length - 1 == 0) {
 						document.getElementById('titlediv').innerHTML = "computing ("+printarr.length+"/"+Math.pow(2,lngth)+"): %100";
-						printTextOutput(1); 
 						clearInterval(interval);
 					} else if (autotestArrIndex % 1 == 0) {
 						document.getElementById('titlediv').innerHTML = "computing ("+printarr.length+"/"+Math.pow(2,lngth)+"): %" + (autotestArrIndex * (100 / (Math.pow(2,lngth)))).toFixed(1);
@@ -370,23 +369,6 @@
 				if (!donttest) {
 					test(combination, 1);
 				}
-			}
-
-			function printTextOutput(is_auto) {
-				document.getElementById('div').innerHTML = '';
-				document.getElementById('titlediv').innerHTML = "";
-				for (let index=0;index<printarr.length;index ++) {
-					///if (index < 500 || index > printarr.length - 500 - (1))
-						doTimeout(index,is_auto);
-				}
-			}
-			
-			function doTimeout(index,is_auto) {
-				setTimeout(function() {
-					document.getElementById('div').innerHTML += printarr[index];
-						if (is_auto)
-							document.getElementById('titlediv').innerHTML = "computed " + printarr.length + ". printing: %" + ((index+1) * (100 / printarr.length)).toFixed(1);
-				}, 0);
 			}
 			
 		</script>
