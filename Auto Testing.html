@@ -302,9 +302,9 @@
 						writetxt = keepstr + " needing " + mem;
 						/* check programmatically*/
 						if (((keepstr+mem).split("1").length - 1) == ((keepstr+mem).split("0").length-1)*2 && (keepstr.split("1").length - 1) != (keepstr.split("0").length-1)*2 ) {
-							writetxt += ". ✔<br>";
+							writetxt += ". ✔";
 						} else {
-							writetxt += ". ✖<br>";
+							writetxt += ". ✖";
 							alert(keepstr);
 						}
 						printarr[printarr.length] = writext;
