@@ -8,6 +8,7 @@
 			<input id="txt" placeholder="Please Enter a Binary String or Auto Test" type="text" style="width:250px;height:32px;text-align:center;"/><input onclick="printarr=[];test(document.getElementById('txt').value, 0);" type="button" value="Test" style="height:38px;cursor:pointer;"/>
 			<div id="titlediv" style="position:relative;width:500px;font-weight:bold;text-align:center;margin:0 auto;top:10px;"></div>
 			<div id="div" style="position:relative;width:500px;height:350px;text-align:center;margin:0 auto;top:10px;"></div>
+			<div id="console-text" style="position:relative;float:left;width:100%;text-align:center;font-family:Verdana;font-size:18px;display:none;top:150px;">Please see the browser console for result</div>
 		</div>
 		<script>
 			
@@ -292,6 +293,7 @@
 						}
 						printarr[printarr.length] = writetxt;
 						console.log(writetxt);
+						document.querySelector("#console-text").style.display = (document.querySelector("#console-text").style.display == "none") ? "block" : "none";
 					} else if (!str.length) {
 						/*
 						* Machine Completed and number of 1s is not twice as 0
@@ -308,6 +310,7 @@
 						}
 						printarr[printarr.length] = writetxt;
 						console.log(writetxt);
+						document.querySelector("#console-text").style.display = (document.querySelector("#console-text").style.display == "none") ? "block" : "none";
 					}
 				}
 			}
