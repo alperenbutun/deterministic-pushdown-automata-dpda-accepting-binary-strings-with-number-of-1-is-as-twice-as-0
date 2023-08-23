@@ -267,6 +267,15 @@
 					}
 				}
 			}
+
+			function popFromStrAndMem() {
+				/*
+				* After each check (e.g 1,0/E) 
+				* one element from string and memory stack is removed
+				*/
+				str = str.substring(1);
+				mem = mem.substring(1);
+			}
 			
 			function autotest() {				
 				let lngth = prompt("Please Enter String Length (eg 6)");
@@ -295,15 +304,6 @@
 					}
 						
 				},0);
-			}
-
-			function popFromStrAndMem() {
-				/*
-				* After each check (e.g 1,0/E) 
-				* one element from string and memory stack is removed
-				*/
-				str = str.substring(1);
-				mem = mem.substring(1);
 			}
 			
 			function testAndGenerate(index,donttest,lngth) {
