@@ -293,7 +293,6 @@
 						}
 						printarr[printarr.length] = writetxt;
 						console.log(writetxt);
-						document.querySelector("#console-text").style.display = (document.querySelector("#console-text").style.display == "none") ? "block" : "block";
 					} else if (!str.length) {
 						/*
 						* Machine Completed and number of 1s is not twice as 0
@@ -310,7 +309,6 @@
 						}
 						printarr[printarr.length] = writetxt;
 						console.log(writetxt);
-						document.querySelector("#console-text").style.display = (document.querySelector("#console-text").style.display == "none") ? "block" : "block";
 					}
 				}
 			}
@@ -344,6 +342,7 @@
 					autotestArrIndex++;
 					if (combination.split("0").length - 1 == 0) {
 						document.getElementById('titlediv').innerHTML = "computing ("+printarr.length+"/"+Math.pow(2,lngth)+"): %100";
+						document.querySelector("#console-text").style.display = (document.querySelector("#console-text").style.display == "none") ? "block" : "block";
 						clearInterval(interval);
 					} else if (autotestArrIndex % 1 == 0) {
 						document.getElementById('titlediv').innerHTML = "computing ("+printarr.length+"/"+Math.pow(2,lngth)+"): %" + (autotestArrIndex * (100 / (Math.pow(2,lngth)))).toFixed(1);
