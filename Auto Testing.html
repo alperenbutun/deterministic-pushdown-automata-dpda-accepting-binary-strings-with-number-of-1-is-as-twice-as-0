@@ -5,7 +5,7 @@
 	<body>
 		<div style="float:left; width:100%;text-align:center;margin-top:9px;position:relative;">
 			<input onclick="autotest();" type="button" value="Auto Test" style="height:38px;cursor:pointer;"/>
-			<input id="txt" placeholder="Please Enter a Binary String or Auto Test" type="text" style="width:250px;height:32px;text-align:center;"/><input onclick="buttonClick()" type="button" value="Test" style="height:38px;cursor:pointer;"/>
+			<input id="binarystring" placeholder="Please Enter a Binary String or Auto Test" type="text" style="width:250px;height:32px;text-align:center;"/><input onclick="testButtonIsClicked()" type="button" value="Test" style="height:38px;cursor:pointer;"/>
 			<div id="titlediv" style="position:relative;width:500px;font-weight:bold;text-align:center;margin:0 auto;top:10px;"></div>
 			<div id="div" style="position:relative;width:500px;height:350px;text-align:center;margin:0 auto;top:10px;"></div>
 			<div id="console-text" style="position:relative;float:left;width:100%;text-align:center;font-family:Verdana;font-size:14px;display:none;top:0px;color:green">result of each test is printed on the web browser's console</div>
@@ -23,17 +23,21 @@
 			var combination = ""; 	/// Keeping the current binary string that is a combination of 0 and 1s according to the length
 						/// taken from the user
 			
-			function buttonClick() {
+			function testButtonIsClicked() {
+				/*
+    				* "Test" button is clicked for a single test
+				* get the binary string and test according to the dpda design
+    				*/
 				printarr=[];
 				document.querySelector('#console-text').style.display = 'none';
-				let singletest = test(document.getElementById('txt').value, 0);
-				if (singletest != "err") {
+				let input = document.getElementById('binarystring').value;
+				if (test(input) != "enter-binary-string") {
 					document.querySelector('#titlediv').innerHTML='';
 					document.querySelector('#div').innerHTML=printarr[0];
 				}
 			}
 			
-			function test(input,is_auto) {
+			function test(input) {
 				/*
 				* Function that taking a binary string as input. 
     				* Testing the string by calling states (nodes) according to the design
@@ -41,16 +45,9 @@
 				
 				keepstr = input; /// keepstr variable is the original string
 				
-				if (!input.length) {
+				if (!input.length || (input.split("0").length-1) + (input.split("1").length-1) != input.length) {
 					alert("Please Enter a Binary String");
-					return "err";
-				}  else if (!is_auto) {
-					for (let index=0;index<input.length;index ++) {
-						if (input[index] != "0" && input[index] != "1") {
-							alert("Please Enter a Binary String");
-							return;
-						}
-					}
+					return "enter-binary-string";
 				}
 				
 				str			= input; 	/// str variable starting with original, is the operation string
@@ -323,7 +320,7 @@
 
 			function popFromStrAndMem() {
 				/*
-				* After each check (e.g 1,0/E) 
+				* After each check (e.g 1,1/111) 
 				* one element from string and memory stack is removed
 				*/
 				str = str.substring(1);
@@ -379,7 +376,7 @@
 					}
 				}
 				if (!donttest) {
-					test(combination, 1);
+					test(combination);
 				}
 			}
 			
