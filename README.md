@@ -1,6 +1,6 @@
 Deterministic Pushdown Automaton (DPDA) Accepting Binary Strings With Number of 1s is as Twice as 0
 
-Update (April 10, 2024):
+**Update (April 10, 2024):**
 It's a fact that I already knew, 1,1/E condition defined for TOP LEFT NODE never happens
 
 Test:
