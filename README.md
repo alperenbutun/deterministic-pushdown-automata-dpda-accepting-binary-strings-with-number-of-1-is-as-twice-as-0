@@ -11,8 +11,8 @@ The first of the points is that there is a need for searching the memory accordi
 
 The second point is that, although my solution mechanism mentioned above is logical and working correctly, it was failing for ~1% percent of inputs. For some inputs, the below condition was happening and machine was halting with failure.
 
-Current Operation string: 100000000
-Current Memory condition: 000000001
+**Current Operation string: 100000000
+Current Memory condition: 000000001**
 
 If the condition was
 
