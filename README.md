@@ -21,9 +21,9 @@ Current Memory condition: 100000000
 
 (which is in fact, meaning the same with the dilemma above = memory condition(needs) satisfies the operation string)
 
-there would be no problem but the first condition was a dilemma for my solution mechanism. So I carefully checked the "1% percent" and saw that the 1% failure is only about the dilemma mentioned above. So I added the "top left node" and solved it.
+there would be no problem but the first condition was a dilemma for my solution mechanism. So I carefully checked the "1% percent" and saw that the total of 1% failure is only about the dilemma. So I added the "top left node" and solved it.
 
-This solution is deterministic so it can be applied to real world. It's 2-step solution. There is a dilemma so it can be thought "impossible to solve". In addition, when I look from above, there is "removing corresponding zeros" not "ones" so it can be seen like "number zipping" and/or "transforming numbers" while solving the problem. 
+This solution is deterministic so it can be applied to real world. It's 2-step solution. There is a dilemma so it can be thought "impossible to solve". In addition, when I look from above, there is "removing corresponding zeros" so it can be seen like "number zipping" and/or "transforming numbers" while solving the problem. 
 
 I think Math was thinking that this problem is NP-Complete but I shared a solution for it. Therefore, I think it's valuable and a contribution to the computer science.
 
