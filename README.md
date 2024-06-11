@@ -18,7 +18,8 @@ If the condition was
 
 Current Operation string: 100000000
 Current Memory condition: 100000000
-(which is in fact, meaning the same with the dilemma above = memory condition satisfies the operation string)
+
+(which is in fact, meaning the same with the dilemma above = memory condition(needs) satisfies the operation string)
 
 there would be no problem but the first condition was a dilemma for my solution mechanism. So I carefully checked the "1% percent" and saw that the 1% failure is only about the dilemma mentioned above. So I added the "top left node" and solved it.
 
