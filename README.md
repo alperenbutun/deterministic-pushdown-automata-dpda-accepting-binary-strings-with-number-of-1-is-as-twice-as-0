@@ -10,6 +10,7 @@ DPDAs are first introduced in the late 1960s. I think the correct time is 1967. 
 The first of the points is that there is a need for searching the memory according to the character seen from the input string. If there is a match, removing from the memory. If not, adding "needed to see" characters to the memory. Searching the memory is not trivial. We can't know how many characters are there and building a deterministic pda is looking impossible. But I kept the characters in the memory in a way that: If there is "0" or "1" in the string that will be kept in the memory, it is the first or the second character. (can be seen in the design). Therefore, checking the first two characters of the memory is sufficient to decide if there is "0" or "1" in the memory. It's checking only the first two characters of the memory to search. In short, Memory searching problem is reduced to Memory checking problem.
 
 The second point is that, although my solution mechanism mentioned above is logical and working correctly, it was failing for ~1% percent of inputs. For some inputs, the below condition was happening and machine was halting with failure.
+
 Current Operation string: 100000000
 Current Memory condition: 000000001
 
