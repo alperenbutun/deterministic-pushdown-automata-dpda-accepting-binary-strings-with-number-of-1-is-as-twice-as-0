@@ -23,18 +23,7 @@ there would be no problem but the first condition was a dilemma for my solution 
 
 This solution is deterministic so it can be applied to real world. It's 2-step solution. There is a dilemma so it can be thought "impossible to solve". In addition, when I look from above, there is "removing corresponding zeros" not "ones" so it can be seen like "number zipping", transforming numbers while solving. 
 
-I think Math was thinking that this problem is NP-Complete but I shared a solution for it. 
+I think Math was thinking that this problem is NP-Complete but I shared a solution for it. Therefore, I think it's valuable and a contribution to the computer science.
 
-Test:
+Test File:
 [Please Click here to Run the Test File](https://rawcdn.githack.com/alperenbutun/Deterministic-PushDown-Automata-DPDA-Accepting-Binary-Strings-with-Number-of-1-is-as-Twice-as-0/0adb4c3/Auto%20Testing.html)
-
-After searching on the Web, I couldn't find the correct and deterministic solution to this problem.
-
-This dpda problem is very fundamental in theoretical computer science.
-
-I'm sending the deterministic solution to Github along with "Visual DPDA Machine Design" and "Simulation of the Design"
-
-* DPDA Machine Design is the visual representation of the dpda design
-* AutoTesting.html is the simulation of the machine which the dpda design is implemented. 
-  This file is also the testing file. Any string or all combination of strings can be tested. 
-  To run this file, please click the link above. 
