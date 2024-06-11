@@ -15,6 +15,7 @@ Current Operation string: 100000000
 Current Memory condition: 000000001
 
 If the condition was
+
 Current Operation string: 100000000
 Current Memory condition: 100000000
 
