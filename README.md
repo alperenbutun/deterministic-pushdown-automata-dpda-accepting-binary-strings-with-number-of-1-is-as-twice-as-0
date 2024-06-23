@@ -16,9 +16,7 @@ Current Memory condition: 000000001**
 
 If the condition was Current Operation string: 100000000 and Current Memory condition: 100000000 (which is in fact, meaning the same with the paradox above: the operation string satisfies the memory condition(needs)) there would be no problem but the first condition was a paradox for my solution. So I carefully checked the "1% percent" and saw that the total of 1% failure is only about the paradox, nothing else. So I added the "top left node" and solved it.
 
-This solution is deterministic so it can be applied to real world. It's 2-step solution. There is a paradox so it can be thought "impossible to solve". In addition, when I look from above, there is "removing corresponding zeros" so it can be seen like "number zipping" and/or "transforming numbers into new ones" while solving an unsolvable problem. 
-
-I think Math was thinking that this problem is NP-Complete but I shared a solution for it. Therefore, I think it's valuable and a contribution to the computer science.
+This solution is deterministic so it can be applied to real world. It's 2-step solution. There is a paradox so it can be thought "impossible to solve". I shared a solution. It can be valuable and a contribution to the computer science.
 
 Test File:
 [Please Click here to Run the Test File](https://rawcdn.githack.com/alperenbutun/Deterministic-PushDown-Automata-DPDA-Accepting-Binary-Strings-with-Number-of-1-is-as-Twice-as-0/0adb4c3/Auto%20Testing.html)
